@@ -32,7 +32,6 @@ if __name__ == '__main__':
     current_listings['request_time'] = request_time
     # print(response.json())
 
-
     # Showing the results in a pretty way
     item_buy_price = current_listings['buys'][0]['unit_price']
     item_sell_price = current_listings['sells'][0]['unit_price']
@@ -42,7 +41,6 @@ if __name__ == '__main__':
     print("  Highest Buy Price: ", item_buy_price)
     print("  Lowest Sell Price: ", item_sell_price)
     print("-------------------------------")
-
 
     # # Bar graph of current listings
     # ## Bar graph of buy listings
