@@ -28,7 +28,8 @@ material_tier INTEGER
 );"""
 
 sql_create_listings_table = """ CREATE TABLE IF NOT EXISTS listings (
-time TEXT,
+request_time TEXT,
+request_timestamp TEXT,
 item_id INTEGER NOT NULL,
 buy_price INTEGER NOT NULL,
 buy_number_of_listings INTEGER NOT NULL, 
@@ -48,7 +49,7 @@ f.close()
 conn = create_connection(db_file)
 if conn is not None:
     create_table(conn,sql_create_items_table)
-    create_table(conn, sql_create_listings_table)
+    create_table(conn,sql_create_listings_table)
 else:
     print("Error! cannot create the database connection.")
 
