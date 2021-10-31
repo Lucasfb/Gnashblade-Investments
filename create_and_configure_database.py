@@ -1,6 +1,6 @@
 import sqlite3
-from sqlite3 import  Error
-import  json
+from sqlite3 import Error
+import json
 
 def create_connection(db_file):
     conn = None
@@ -48,8 +48,8 @@ f.close()
 
 conn = create_connection(db_file)
 if conn is not None:
-    create_table(conn,sql_create_items_table)
-    create_table(conn,sql_create_listings_table)
+    create_table(conn, sql_create_items_table)
+    create_table(conn, sql_create_listings_table)
 else:
     print("Error! cannot create the database connection.")
 
