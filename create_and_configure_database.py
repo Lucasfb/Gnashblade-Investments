@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+
 import json
 
 def create_connection(db_file):
@@ -54,7 +55,7 @@ else:
     print("Error! cannot create the database connection.")
 
 for item in materials.items():
-    item_to_insert = (item[1]['id'],item[1]['name'],item[1]['type'],item[1]['tier'])
+    item_to_insert = (item[1]['id'],item[1]['name'],item[1]['category'],item[1]['tier'])
     sql_insert_item = ''' INSERT INTO items(item_id,item_name,material_type,material_tier)
                  VALUES(?,?,?,?) '''
     cur = conn.cursor()
