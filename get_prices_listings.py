@@ -21,8 +21,8 @@ cur = conn.cursor()
 # Requesting all items at conce
 desired_ids = ""
 
-for item in materials.items():
-    desired_ids = desired_ids + item[1]['id'] + ","
+for item in materials:
+    desired_ids = desired_ids + item['id'] + ","
 full_endpoint_path = base_url + "/" + endpoint_selected + "?ids="+desired_ids
 
 response = requests.get(full_endpoint_path)

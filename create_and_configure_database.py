@@ -3,6 +3,7 @@ from sqlite3 import Error
 
 import json
 
+
 def create_connection(db_file):
     conn = None
     try:
@@ -24,6 +25,7 @@ db_file = r"./material_listings.db"
 sql_create_items_table = """CREATE TABLE IF NOT EXISTS items (
 item_id integer PRIMARY KEY,
 item_name TEXT NOT NULL, 
+item_shortcutname TEXT,
 material_type TEXT,
 material_tier INTEGER
 );"""
@@ -54,10 +56,10 @@ if conn is not None:
 else:
     print("Error! cannot create the database connection.")
 
-for item in materials.items():
-    item_to_insert = (item[1]['id'],item[1]['name'],item[1]['category'],item[1]['tier'])
-    sql_insert_item = ''' INSERT INTO items(item_id,item_name,material_type,material_tier)
-                 VALUES(?,?,?,?) '''
+for item in materials:
+    item_to_insert = (item['id'],item['name'],item['shortcut_name'],item['category'],item['tier'])
+    sql_insert_item = ''' INSERT INTO items(item_id,item_name,item_shortcutname,material_type,material_tier)
+                 VALUES(?,?,?,?,?) '''
     cur = conn.cursor()
     cur.execute(sql_insert_item, item_to_insert)
     conn.commit()
