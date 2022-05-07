@@ -1,5 +1,7 @@
+use chrono::prelude::*;
 use error_chain::error_chain;
-use reqwest;
+//use reqwest;
+use rusqlite::{params,Connection};
 use serde_derive::{Deserialize, Serialize};
 use std::fs;
 
@@ -12,9 +14,8 @@ struct Material {
     tier: String,
 }
 
-
 #[derive(Serialize, Deserialize, Debug)]
-struct  Listing {
+struct Listing {
     listings: u64,
     unit_price: u64,
     quantity: u64,
@@ -22,9 +23,9 @@ struct  Listing {
 
 #[derive(Serialize, Deserialize, Debug)]
 struct MaterialListing {
-    id : u64,
+    id: u64,
     buys: Vec<Listing>,
-    sells: Vec<Listing>
+    sells: Vec<Listing>,
 }
 
 error_chain! {
@@ -43,20 +44,40 @@ async fn main() {
     let base_url = "https://api.guildwars2.com/v2";
     let endpoint_selected = "commerce/listings";
 
+    let path = "./material_listings.db";
+    let db = Connection::open(&path).unwrap();
+    println!("Connected to database");
+
     for material in materials_list {
-        let url_request = format!(
-            "{}/{}?ids={}",
-            base_url, endpoint_selected, material.id
-        );
+        let url_request = format!("{}/{}?ids={}", base_url, endpoint_selected, material.id);
+        let request_time: DateTime<Local> = Local::now();
+        let request_timestamp = request_time.timestamp();
         let response = reqwest::get(&url_request).await.unwrap();
 
         let listings: Vec<MaterialListing> = response.json::<Vec<MaterialListing>>().await.unwrap();
-        println!("Material: {:?}",material.name);
+        println!("Material: {:?}", material.name);
         println!("ID: {:?}", listings[0].id);
         println!("Buy price:{:?}", listings[0].buys[0].unit_price);
         println!("Sell price:{:?}", listings[0].sells[0].unit_price);
         println!();
-     }
 
-    let _a = 1;
+        let sql_insert_item = "INSERT INTO listings (request_time,request_timestamp,item_id,buy_price,buy_number_of_listings,buy_quantity,sell_price,sell_number_of_listings,sell_quantity) VALUES (?,?,?,?,?,?,?,?,?)";
+        db.execute(
+            sql_insert_item,
+            params![
+                request_time.to_rfc3339(),
+                request_timestamp,
+                material.id,
+                listings[0].buys[0].unit_price,
+                listings[0].buys[0].listings,
+                listings[0].buys[0].quantity,
+                listings[0].sells[0].unit_price,
+                listings[0].sells[0].quantity,
+                listings[0].sells[0].listings,
+            ],
+        )
+        .unwrap();
+    }
+
+   // let _debug_point = 1;
 }
