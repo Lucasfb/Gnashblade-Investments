@@ -42,6 +42,7 @@ for requested_item in current_listings:
     cur.execute(sql_insert_item, item_to_insert)
     conn.commit()
 
+conn.close()
 # Old way, requesting each item separately
 # for item in materials.items():
 #
