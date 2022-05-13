@@ -1,6 +1,6 @@
 import requests
 import json
-import datetime
+from datetime import datetime
 import sqlite3
 
 # Loading the data of items of interest from a file
@@ -27,8 +27,9 @@ full_endpoint_path = base_url + "/" + endpoint_selected + "?ids="+desired_ids
 
 response = requests.get(full_endpoint_path)
 # Considers the difference between requesting and getting the current time negligible
-request_time = datetime.datetime.now()
-request_timestamp = request_time.timestamp()
+request_time = datetime.now()
+request_timestamp = int(request_time.timestamp())
+request_time = request_time.isoformat()
 current_listings = json.loads(response.content)
 
 for requested_item in current_listings:
