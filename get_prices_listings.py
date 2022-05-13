@@ -27,7 +27,7 @@ full_endpoint_path = base_url + "/" + endpoint_selected + "?ids="+desired_ids
 
 response = requests.get(full_endpoint_path)
 # Considers the difference between requesting and getting the current time negligible
-request_time = datetime.now()
+request_time = datetime.now().astimezone()
 request_timestamp = int(request_time.timestamp())
 request_time = request_time.isoformat()
 current_listings = json.loads(response.content)
