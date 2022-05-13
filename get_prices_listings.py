@@ -38,7 +38,6 @@ for requested_item in current_listings:
                       requested_item['sells'][0]['unit_price'], requested_item['sells'][0]['listings'], requested_item['sells'][0]['quantity'])
     sql_insert_item = ''' INSERT INTO listings(request_time,request_timestamp,item_id,buy_price,buy_number_of_listings,buy_quantity,sell_price,sell_number_of_listings,sell_quantity)
                  VALUES(?,?,?,?,?,?,?,?,?) '''
-    cur = conn.cursor()
     cur.execute(sql_insert_item, item_to_insert)
     conn.commit()
 
