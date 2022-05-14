@@ -14,6 +14,6 @@ for each_time in rows:
     new_request_timestamp = int(float(old_request_timestamp))  # Convert from string to float, then to int
     cur.execute("UPDATE listings SET request_time = ?, request_timestamp = ? WHERE request_time= ?",
                 [new_request_time, new_request_timestamp, old_request_time])
-    conn.commit()
+conn.commit()
 
 conn.close()
