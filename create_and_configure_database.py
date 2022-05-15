@@ -23,7 +23,7 @@ def create_table(conn,create_table_SQL):
 db_file = r"./material_listings.db"
 
 sql_create_items_table = """CREATE TABLE IF NOT EXISTS items (
-item_id integer PRIMARY KEY,
+item_id TEXT PRIMARY KEY,
 item_name TEXT NOT NULL, 
 item_shortcutname TEXT,
 material_type TEXT,
