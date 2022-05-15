@@ -7,6 +7,13 @@
     "tier": "5"
   },
   {
+    "category": "ore",
+    "name": "Orichalcum Ore",
+    "shortcut_name": "orichalcum",
+    "id": "19701",
+    "tier": "6"
+  },
+  {
     "category": "wood",
     "name": "Elder Wood Log",
     "shortcut_name": "elder_wood",
