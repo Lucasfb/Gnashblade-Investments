@@ -1,0 +1,30 @@
+[
+  {
+    "category": "ore",
+    "name": "Mithril Ore",
+    "shortcut_name": "mithril",
+    "id": "19700",
+    "tier": "5"
+  },
+  {
+    "category": "wood",
+    "name": "Elder Wood Log",
+    "shortcut_name": "elder_wood",
+    "id": "19722",
+    "tier": "5"
+  },
+  {
+    "category": "leather",
+    "name": "Thick Leather Section",
+    "shortcut_name": "thick_leather",
+    "id": "19729",
+    "tier": "5"
+  },
+  {
+    "category": "cloth",
+    "name": "Silk Scrap",
+    "shortcut_name": "silk",
+    "id": "19748",
+    "tier": "5"
+  }
+]
