@@ -18,7 +18,7 @@ endpoint_selected = "commerce/listings"
 conn = sqlite3.connect('material_listings.db')
 cur = conn.cursor()
 
-# Requesting all items at conce
+# Requesting all items at once
 desired_ids = ""
 
 for item in materials:
