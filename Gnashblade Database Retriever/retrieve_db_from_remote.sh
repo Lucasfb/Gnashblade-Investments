@@ -1,3 +1,5 @@
+echo "Starting Script - Copy Guild Wars 2 Trading Post data from server (Raspberry Pi) to local"
+
 remote_host=raspberrypi # Connected with Tailscale, so no explicit IP is necessary
 remote_username=gw2stuff
 remote_file_location="/home/"$remote_username"/rust_tp_collector/material_listings.db"
